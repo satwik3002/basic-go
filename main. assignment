@@ -1,0 +1,42 @@
+//Create a Program to explain difference between Pass by Value and pass by Reference in Golang
+package main
+
+import "fmt"
+
+func main() {
+	a, b := 1, 2
+	c, d := 3, 4
+
+	// Initialize Value
+	fmt.Printf("Value a: %d, b: %d, c: %d, d: %d\n", a, b, c, d)
+	fmt.Printf("Memory Address a: %p, b: %p, c: %p, d: %p\n", &a, &b, &c, &d)
+
+	fmt.Println("----------")
+
+	// Passing By Value
+	Swap(a, b)
+
+	// Passing By Reference
+	SwapRef(&c, &d)
+
+	fmt.Printf("Value a: %d, b: %d, c: %d, d: %d\n", a, b, c, d)
+	fmt.Printf("Memory Address a: %p, b: %p, c: %p, d: %p\n", &a, &b, &c, &d)
+}
+
+// Pass By Value
+func Swap(x, y int) {
+	fmt.Printf("Swap parameter memory address: %p, %p\n", &x, &y)
+	x, y = y, x
+}
+
+// Pass By Reference
+func SwapRef(x, y *int) {
+	fmt.Printf("Swap Reference parameter memory address: %p, %p\n", x, y)
+	*x, *y = *y, *x
+}
+//Two functions are described in the example:
+
+The function swap(x, y int) takes two integer inputs. The values given to the function are stored in different locations in memory than where a and b are stored in the main() method. This is because the Go language initialises new memory regions for a and b using copies of their values from the originals. Because this method employs Pass by value, exchanging the values of a and b is not feasible.
+
+
+The method SwapRef(x, y *int) takes two pointer integer inputs. The values given to the function are stored in the identical places in memory as c and d in the main() method. Thus, every action taken on x and y within the SwapRef() function
